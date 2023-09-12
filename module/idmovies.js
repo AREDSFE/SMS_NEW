@@ -9,16 +9,20 @@ async function idmovies(req, res) {
   const client = require('twilio')(accountSid, authToken);
   console.log(typeof (req.params.id))
   const number = '+' + req.params.id
+  console.log(number)
 
-  client.messages
-    .create({
-      body: 'تم قبول المعاملة الرجاء المراجعه برقم هاتفك المسجل ',
-      from: '+12512704131',
-      to: number
-    }).then(message => console.log(message.sid)).catch(err => console.log(err))
 
-  res.status(200).json({ 'message': 'message send' })
+    
+    client.messages
+        .create({
+            body: 'تم قبول المعاملة الرجاء المراجعه برقم هاتفك المسجل ',
+            from: '+12512704131',
+            to: number
+        })
+        .then(message => console.log(message.sid))
+        .done();
 }
+
 
 
 module.exports = { idmovies }
