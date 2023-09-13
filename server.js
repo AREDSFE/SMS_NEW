@@ -19,7 +19,7 @@ const port = process.env.PORT || 3005
 
 
 
-app.get('/:number', (req, res) => {
+app.get('/:number/:type', (req, res) => {
 
     const accountSid = 'AC1c2e11b28425b0e32793c1e73bc08595';
     const authToken = '0d7fe7990eee5f2c4ca2fb772919e836';
@@ -27,10 +27,11 @@ app.get('/:number', (req, res) => {
     // Use the REST client to send a text message
 
     const number = '+' + req.params.number
+    const type = req.params.type
     console.log(number)
 
     client.messages.create({
-        body: 'تم قبول المعاملة الرجاء المراجعه برقم هاتفك المسجل ',
+        body: 'تم قبول المعاملة '+type+' جواز الرجاء المراجعه برقم هاتفك المسجل ',
         from: '+12512704131',
         to: number
     }).then(function (message) {
